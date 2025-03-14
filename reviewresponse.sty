@@ -24,16 +24,24 @@
 \newcommand*{\thedate}{\@date}
 
 %%% Colors
-\definecolor{colorcommentfg}{HTML}{336633}
-\definecolor{colorcommentbg}{HTML}{ededed}
-\definecolor{colorcommentframe}{HTML}{336633}
+% Hex: #CEB888 for Old Gold, #000000 for Black
+\definecolor{colorcommentfg}{HTML}{000000}
+% \definecolor{colorcommentbg}{HTML}{CEB888}
+\definecolor{colorcommentbg}{HTML}{E6DAB1}
+\definecolor{colorcommentframe}{HTML}{000000}
+% \definecolor{colorcommentfg}{HTML}{336633}
+% \definecolor{colorcommentbg}{HTML}{ededed}
+% \definecolor{colorcommentframe}{HTML}{336633}
 %\definecolor{colordark}{RGB}{0,63,87}
 %\definecolor{colormedium}{RGB}{0,112,155}
 %\definecolor{colorlight}{RGB}{102,180,211}
 %\colorlet{colorcommentbg}{colorlight!20}
 
-\definecolor{colorchangebg}{HTML}{e5f9de}
+% \definecolor{colorchangebg}{HTML}{e5f9de}
+% \definecolor{colorchangetext}{HTML}{424242}
+\definecolor{colorchangebg}{HTML}{9d968D}
 \definecolor{colorchangetext}{HTML}{424242}
+
 \colorlet{colorchangeframe}{black!20}
 %%%
 
@@ -53,6 +61,8 @@
 \setcounter{reviewer@counter}{0}
 \newcounter{reviewcomment@counter}[reviewer@counter]
 \setcounter{reviewcomment@counter}{0}
+
+% \setcounter{reviewcomment@counter}{0}
 %%%
 
 %%% Commands
@@ -60,18 +70,21 @@
 	\begin{titlepage}
 		\begin{center}
 			\vspace*{1cm}
-			\large{Responses to Reviewers' Comments for Manuscript \reviewresponse@manuscript}\\
+            
+			\large{Responses to Reviewers' Comments for Manuscript \reviewresponse@manuscript}\\ \vspace{1cm}
+            \large{\textbf{Title:} \@title}\\
+            {\large{\textbf{Authors:} \@author}}
 
-			\vspace{1cm}
-			\textbf{\LARGE{\@title}}\\
-			\vspace{1cm}
-			\large{Addressed Comments for Publication to}
+			% \vspace{1cm}
+			% \textbf{\LARGE{\@title}}\\
+			% \vspace{1cm}
+			% \large{Addressed Comments for Publication to}
 			
-			\Large{\reviewresponse@journal}
+			% \Large{\reviewresponse@journal}
 			
-			\large{by}
+			% \large{by}
 			
-			{\large{\@author}}
+			% {\large{\@author}}
 		\end{center}
 	\end{titlepage}
 }
@@ -81,7 +94,9 @@
 	\@ifundefined{pdfbookmark}{}{%
 		\pdfbookmark[1]{Reponse to the Meta Review}{hyperref@editor}%
 	}%
-	\section*{\textbf{Response to the Meta Review}}
+	% \section*{\textbf{Response to the Meta Review}}
+    % \section{\textbf{Response to Reviewers' Comments}}
+    \section{\textbf{Response to Editor}}
 }
 
 \newcommand{\reviewer}{
@@ -97,16 +112,24 @@
 %%% Blocks %%%
 \newenvironment{generalcomment}{%
 \refstepcounter{reviewcomment@counter}
-	\begin{tcolorbox}[adjusted title={Summary Comment \arabic{reviewcomment@counter}}, fonttitle={\bfseries}, enhanced jigsaw, colbacktitle={colorcommentframe},arc=0pt,boxrule=0em,opacityframe=0,colback={colorcommentbg}]
+	\begin{tcolorbox}[adjusted title={Summary Comment 
+    % \arabic{reviewcomment@counter}
+    }, fonttitle={\bfseries}, enhanced jigsaw, colbacktitle={colorcommentframe},arc=0pt,boxrule=0em,opacityframe=0,colback={colorcommentbg}]
 }{\end{tcolorbox}}
 
 \newenvironment{revcomment}[1][]{\refstepcounter{reviewcomment@counter}
 	\begin{tcolorbox}[adjusted title={Comment \arabic{reviewer@counter}.\arabic{reviewcomment@counter}}, fonttitle={\bfseries}, enhanced jigsaw, colbacktitle={colorcommentframe},arc=0pt,opacityframe=0,boxrule=0em,colback={colorcommentbg},#1]
 }{\end{tcolorbox}}
-
-\newenvironment{revresponse}[1][{Thank you for the comment.}]{%
+% Thank you for the comment.
+\newenvironment{revresponse}[1][{}]{%
 	\noindent\textbf{Response \arabic{reviewer@counter}.\arabic{reviewcomment@counter}:} #1\par
 }{\vspace{1em}}
+
+
+% \newenvironment{revresponse}[1][{Thank you for the comment.}]{%
+% 	\noindent\textbf{Response \arabic{reviewer@counter}.\arabic{reviewcomment@counter}:} #1\par
+% }{\vspace{1em}}
+
 
 \newenvironment{revmeta}[1][{Thank you for the comment.}]{%
 	\textbf{Response S\arabic{reviewcomment@counter}:} #1\par
